@@ -42,9 +42,9 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
   const navLinks = [
     { name: 'Live Stream', href: '/feed', icon: Rss },
+    { name: 'Architecture', href: '/architecture', icon: Network },
     { name: 'Saved Bookmarks', href: '/saved', icon: Bookmark },
     { name: 'Settings', href: '/settings', icon: Settings },
-    { name: 'Architecture', href: '/architecture.html', icon: Network },
     { name: 'Admin', href: '/admin', icon: ShieldCheck },
   ];
 
@@ -60,12 +60,10 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
             {navLinks.map((link) => {
               const Icon = link.icon;
               const isActive = pathname === link.href;
-              const isExternal = link.href.endsWith('.html');
               return (
                 <Link
                   key={link.href}
                   href={link.href}
-                  target={isExternal ? '_blank' : undefined}
                   className={`flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-bold font-heading transition-all ${
                     isActive
                       ? 'bg-purple-600/30 text-white border border-purple-500/50 shadow-md shadow-purple-900/40'

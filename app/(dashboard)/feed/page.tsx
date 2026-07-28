@@ -6,7 +6,8 @@ import React, { useState, useEffect } from 'react';
 import ArticleCard, { Article } from '@/components/ArticleCard';
 import SentimentGauge from '@/components/SentimentGauge';
 import HeroShowcase from '@/components/HeroShowcase';
-import { Search, Loader2 } from 'lucide-react';
+import Link from 'next/link';
+import { Search, Loader2, Network, ExternalLink } from 'lucide-react';
 
 const CATEGORIES = [
   'All Channels',
@@ -79,6 +80,37 @@ export default function FeedPage() {
       />
 
       <SentimentGauge articles={articles} />
+
+      <div className="glass-panel p-6 md:p-8 rounded-3xl border border-purple-500/30 shadow-2xl relative overflow-hidden space-y-4">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div className="space-y-1">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-purple-500/15 border border-purple-500/30 text-purple-300 text-xs font-semibold">
+              <Network className="w-3.5 h-3.5 text-cyan-400" />
+              <span>Explorable System Topology</span>
+            </div>
+            <h2 className="text-xl font-extrabold font-heading text-white tracking-tight">System Architecture Showcase</h2>
+            <p className="text-xs text-purple-300/70 max-w-xl">
+              Visualizing the multi-source RSS ingestion engine, Supabase PostgreSQL with RLS, and Next.js 14 serverless pipeline.
+            </p>
+          </div>
+
+          <Link
+            href="/architecture"
+            className="inline-flex items-center gap-2 glow-button-purple text-xs font-bold font-heading px-5 py-3 rounded-2xl whitespace-nowrap shadow-lg hover:scale-105 transition-all"
+          >
+            <span>Explore Full Interactive Diagram</span>
+            <ExternalLink className="w-4 h-4" />
+          </Link>
+        </div>
+
+        <div className="w-full h-96 rounded-2xl overflow-hidden border border-purple-500/25 bg-[#06040f] relative shadow-inner">
+          <iframe
+            src="/architecture.html"
+            title="Homepage Embedded Interactive Architecture Diagram"
+            className="w-full h-full border-0"
+          />
+        </div>
+      </div>
 
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pt-2">
         <div className="flex items-center gap-2 overflow-x-auto pb-2 md:pb-0 no-scrollbar">
