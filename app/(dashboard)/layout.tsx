@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Sparkles, Rss, Bookmark, Settings, ShieldCheck, LogOut, User as UserIcon } from 'lucide-react';
+import { Sparkles, Rss, Bookmark, Settings, ShieldCheck, LogOut, User as UserIcon, UserPlus } from 'lucide-react';
 import { createClient } from '@/lib/supabase/client';
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
@@ -72,7 +72,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
             })}
           </nav>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2.5">
             {user ? (
               <div className="flex items-center gap-3">
                 <div className="hidden sm:flex flex-col text-right">
@@ -88,10 +88,17 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                 </button>
               </div>
             ) : (
-              <Link href="/login" className="flex items-center gap-2 px-4 py-2 rounded-xl glow-button-purple text-xs font-bold font-heading">
-                <UserIcon className="w-4 h-4" />
-                <span>Sign In</span>
-              </Link>
+              <div className="flex items-center gap-2">
+                <Link href="/login" className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-purple-950/40 border border-purple-500/25 hover:border-purple-500/50 text-purple-200 hover:text-white text-xs font-bold font-heading transition-all">
+                  <UserIcon className="w-3.5 h-3.5 text-purple-400" />
+                  <span>Sign In</span>
+                </Link>
+
+                <Link href="/signup" className="flex items-center gap-1.5 px-4 py-2 rounded-xl glow-button-purple text-xs font-bold font-heading shadow-md shadow-purple-600/25 transition-all">
+                  <UserPlus className="w-3.5 h-3.5" />
+                  <span>Sign Up</span>
+                </Link>
+              </div>
             )}
           </div>
         </div>
