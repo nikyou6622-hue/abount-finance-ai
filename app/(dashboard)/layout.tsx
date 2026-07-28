@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Sparkles, Rss, Bookmark, Settings, ShieldCheck, LogOut, User as UserIcon, UserPlus } from 'lucide-react';
+import { Sparkles, Rss, Bookmark, Settings, ShieldCheck, LogOut, User as UserIcon, UserPlus, Network } from 'lucide-react';
 import { createClient } from '@/lib/supabase/client';
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
@@ -44,38 +44,29 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
     { name: 'Live Stream', href: '/feed', icon: Rss },
     { name: 'Saved Bookmarks', href: '/saved', icon: Bookmark },
     { name: 'Settings', href: '/settings', icon: Settings },
+    { name: 'Architecture', href: '/architecture.html', icon: Network },
     { name: 'Admin', href: '/admin', icon: ShieldCheck },
   ];
 
   return (
     <div className="min-h-screen flex flex-col bg-[#080613]">
-      <header className="sticky top-0 z-50 glass-panel border-b border-purple-500/20 px-4 md:px-8 py-3.5 shadow-xl">
+      <header className="sticky top-0 z-50 glass-panel border-b border-purple-500/20 px-4 md:px-8 py-3 shadow-xl">
         <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
           <Link href="/feed" className="flex items-center gap-3 group">
-            <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-purple-600 to-pink-600 p-0.5 shadow-lg shadow-purple-600/30 group-hover:scale-105 transition-transform">
-              <div className="w-full h-full bg-[#0d091f] rounded-[14px] flex items-center justify-center">
-                <Sparkles className="w-5 h-5 text-purple-400" />
-              </div>
-            </div>
-            <div>
-              <span className="font-extrabold text-lg tracking-tight font-heading text-white group-hover:text-purple-300 transition-colors">
-                Abount <span className="text-gradient-neon">Finance AI</span>
-              </span>
-              <span className="text-[10px] block text-purple-400/60 font-semibold tracking-wider uppercase">
-                Intelligence Stream
-              </span>
-            </div>
+            <img src="/images/logo.svg" alt="Abount Finance AI Logo" className="h-10 w-auto group-hover:scale-105 transition-transform" />
           </Link>
 
           <nav className="hidden md:flex items-center gap-1.5 bg-[#0d091f]/80 p-1.5 rounded-2xl border border-purple-500/20">
             {navLinks.map((link) => {
               const Icon = link.icon;
               const isActive = pathname === link.href;
+              const isExternal = link.href.endsWith('.html');
               return (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold font-heading transition-all ${
+                  target={isExternal ? '_blank' : undefined}
+                  className={`flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-bold font-heading transition-all ${
                     isActive
                       ? 'bg-purple-600/30 text-white border border-purple-500/50 shadow-md shadow-purple-900/40'
                       : 'text-purple-300/70 hover:text-white hover:bg-purple-950/40'
