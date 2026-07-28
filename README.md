@@ -1,7 +1,4 @@
 # ⚡ Abount Finance AI — Next-Gen Financial & AI Intelligence Stream
-<img width="976" height="900" alt="Screenshot 2026-07-28 203941" src="https://github.com/user-attachments/assets/91f921dc-0c2c-4098-a845-7f4ac4aa926d" />
-<img width="992" height="910" alt="Screenshot 2026-07-28 203920" src="https://github.com/user-attachments/assets/22f7185c-6571-453f-b893-00bbd26087d5" />
-
 
 > **Automated Multi-Source Market Stream Aggregator & Maxton Dark Admin Management Console**
 
@@ -44,6 +41,16 @@ The application includes a powerful **Maxton-inspired Dark Admin Panel** for com
 - **Content Moderation & Sentiment Overrides**: Live sentiment dropdown editor (`Bullish` / `Neutral` / `Bearish`) directly persisting to Supabase.
 - **Scrape Execution Audit Logs**: Complete history of automated cron and manual ingestion pipeline runs with error tracking.
 - **Automated Morning Email Briefings**: One-click dispatch trigger sending AI market digests to active subscribers.
+
+---
+
+## 📸 Screenshots & UI Showcase
+
+### Public Intelligence Feed
+![Public Market Stream Dashboard](public/images/dashboard_preview.png)
+
+### Maxton Dark Admin Management Console
+![Maxton Admin Dashboard](public/images/admin_preview.png)
 
 ---
 
