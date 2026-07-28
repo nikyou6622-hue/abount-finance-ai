@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Sparkles, Rss, Bookmark, Settings, ShieldCheck, LogOut, User as UserIcon, UserPlus, Network } from 'lucide-react';
+import { Sparkles, Rss, Bookmark, Settings, ShieldCheck, LogOut, User as UserIcon, UserPlus } from 'lucide-react';
 import { createClient } from '@/lib/supabase/client';
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
@@ -42,7 +42,6 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
   const navLinks = [
     { name: 'Live Stream', href: '/feed', icon: Rss },
-    { name: 'Architecture', href: '/architecture', icon: Network },
     { name: 'Saved Bookmarks', href: '/saved', icon: Bookmark },
     { name: 'Settings', href: '/settings', icon: Settings },
     { name: 'Admin', href: '/admin', icon: ShieldCheck },
@@ -64,7 +63,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-bold font-heading transition-all ${
+                  className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold font-heading transition-all ${
                     isActive
                       ? 'bg-purple-600/30 text-white border border-purple-500/50 shadow-md shadow-purple-900/40'
                       : 'text-purple-300/70 hover:text-white hover:bg-purple-950/40'

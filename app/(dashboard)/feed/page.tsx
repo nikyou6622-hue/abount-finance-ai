@@ -6,7 +6,7 @@ import React, { useState, useEffect } from 'react';
 import ArticleCard, { Article } from '@/components/ArticleCard';
 import SentimentGauge from '@/components/SentimentGauge';
 import HeroShowcase from '@/components/HeroShowcase';
-import ArchitectureDiagram from '@/components/ArchitectureDiagram';
+import MarketHeatmap from '@/components/MarketHeatmap';
 import { Search, Loader2 } from 'lucide-react';
 
 const CATEGORIES = [
@@ -81,7 +81,7 @@ export default function FeedPage() {
 
       <SentimentGauge articles={articles} />
 
-      <ArchitectureDiagram />
+      <MarketHeatmap />
 
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pt-2">
         <div className="flex items-center gap-2 overflow-x-auto pb-2 md:pb-0 no-scrollbar">
