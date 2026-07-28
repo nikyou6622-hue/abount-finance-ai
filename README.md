@@ -1,4 +1,7 @@
 # ⚡ Abount Finance AI — Next-Gen Financial & AI Intelligence Stream
+<img width="976" height="900" alt="Screenshot 2026-07-28 203941" src="https://github.com/user-attachments/assets/91f921dc-0c2c-4098-a845-7f4ac4aa926d" />
+<img width="992" height="910" alt="Screenshot 2026-07-28 203920" src="https://github.com/user-attachments/assets/22f7185c-6571-453f-b893-00bbd26087d5" />
+
 
 > **Automated Multi-Source Market Stream Aggregator & Maxton Dark Admin Management Console**
 
