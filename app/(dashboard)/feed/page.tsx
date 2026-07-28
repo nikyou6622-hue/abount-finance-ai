@@ -42,7 +42,7 @@ export default function FeedPage() {
       }
     } catch (err) {
       console.error('Failed to fetch articles:', err);
-    } font-sans finally {
+    } finally {
       setLoading(false);
     }
   };
