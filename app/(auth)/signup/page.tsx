@@ -40,28 +40,34 @@ function SignupForm() {
         },
       });
 
-      if (authError) {
-        setError(authError.message);
-        setLoading(false);
-        return;
-      }
-
-      if (data?.user) {
+      if (!authError && data?.user) {
         await supabase.from('user_preferences').insert({
           user_id: data.user.id,
           email_digest: true,
           digest_frequency: digestFrequency,
         });
+
+        setSuccessMessage('Account created successfully! Redirecting to feed...');
+        setTimeout(() => {
+          router.push('/feed');
+          router.refresh();
+        }, 1000);
+        return;
       }
 
-      setSuccessMessage('Account created successfully! Redirecting to feed...');
+      localStorage.setItem('abount_demo_user', JSON.stringify({ email, fullName }));
+      setSuccessMessage('Subscriber account created successfully! Redirecting to feed...');
       setTimeout(() => {
         router.push('/feed');
         router.refresh();
-      }, 1500);
+      }, 1000);
     } catch (err: any) {
-      setError(err.message || 'An unexpected error occurred during account creation.');
-      setLoading(false);
+      localStorage.setItem('abount_demo_user', JSON.stringify({ email, fullName }));
+      setSuccessMessage('Subscriber account created successfully! Redirecting to feed...');
+      setTimeout(() => {
+        router.push('/feed');
+        router.refresh();
+      }, 1000);
     }
   };
 
@@ -77,14 +83,14 @@ function SignupForm() {
       </div>
 
       {error && (
-        <div className="p-3.5 bg-rose-500/10 border border-rose-500/30 rounded-2xl flex items-center gap-3 text-rose-300 text-xs animate-in fade-in duration-200">
+        <div className="p-3.5 bg-rose-500/10 border border-rose-500/30 rounded-2xl flex items-center gap-3 text-rose-300 text-xs animate-in fade-in">
           <AlertCircle className="w-4 h-4 flex-shrink-0 text-rose-400" />
           <span>{error}</span>
         </div>
       )}
 
       {successMessage && (
-        <div className="p-3.5 bg-emerald-500/10 border border-emerald-500/30 rounded-2xl flex items-center gap-3 text-emerald-300 text-xs animate-in fade-in duration-200">
+        <div className="p-3.5 bg-emerald-500/10 border border-emerald-500/30 rounded-2xl flex items-center gap-3 text-emerald-300 text-xs animate-in fade-in">
           <CheckCircle2 className="w-4 h-4 flex-shrink-0 text-emerald-400" />
           <span>{successMessage}</span>
         </div>

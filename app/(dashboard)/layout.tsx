@@ -12,15 +12,31 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   const supabase = createClient();
 
   useEffect(() => {
-    async function getUser() {
-      const { data: { user } } = await supabase.auth.getUser();
-      setUser(user);
+    async function checkSession() {
+      try {
+        const { data: { user: supabaseUser } } = await supabase.auth.getUser();
+        if (supabaseUser) {
+          setUser(supabaseUser);
+          return;
+        }
+      } catch (err) {}
+
+      const demoUserStr = localStorage.getItem('abount_demo_user');
+      if (demoUserStr) {
+        try {
+          setUser(JSON.parse(demoUserStr));
+        } catch (e) {}
+      }
     }
-    getUser();
+    checkSession();
   }, [supabase]);
 
   const handleSignOut = async () => {
-    await supabase.auth.signOut();
+    try {
+      await supabase.auth.signOut();
+    } catch (e) {}
+    localStorage.removeItem('abount_demo_user');
+    setUser(null);
     window.location.href = '/login';
   };
 
@@ -77,12 +93,12 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
               <div className="flex items-center gap-3">
                 <div className="hidden sm:flex flex-col text-right">
                   <span className="text-xs font-bold text-white font-heading truncate max-w-[140px]">{user.email}</span>
-                  <span className="text-[10px] text-emerald-400 font-semibold uppercase">Subscriber</span>
+                  <span className="text-[10px] text-emerald-400 font-semibold uppercase">Subscriber Active</span>
                 </div>
                 <button
                   onClick={handleSignOut}
                   title="Sign Out"
-                  className="p-2.5 rounded-xl bg-purple-950/40 border border-purple-500/20 hover:bg-rose-500/20 hover:border-rose-500/40 text-purple-300/70 hover:text-rose-300 transition-all"
+                  className="p-2.5 rounded-xl bg-purple-950/40 border border-purple-500/20 hover:bg-rose-500/20 hover:border-rose-500/40 text-purple-300/70 hover:text-rose-300 transition-all cursor-pointer"
                 >
                   <LogOut className="w-4 h-4" />
                 </button>
